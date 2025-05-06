@@ -1,0 +1,98 @@
+name: Build and Test NetworkManager
+on:
+  push:
+    branches: [ main, develop, 'release/**', 'hotfix/**', 'feature/**'] 
+  pull_request:
+    branches: [ main, develop, 'release/**', 'hotfix/**', 'feature/**'] 
+env:
+  THUNDER_REF: "R4.4.1"
+jobs:
+  build-and-test:
+    name: Build and test NetworkManager
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Install packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libnm0 git pkg-config ninja-build \
+          libusb-1.0-0-dev zlib1g-dev libssl-dev libcurl4-openssl-dev libglib2.0-dev \
+          libnm-dev uuid-dev libgupnp-1.2-dev libgssdp-1.2-dev \
+          libsoup2.4-dev
+      
+      - name: Configure Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      
+      - name: Install Python dependencies
+        run: pip install jsonref
+      
+      - name: Checkout main repository
+        uses: actions/checkout@v3
+      
+      - name: Build ThunderTools
+        run: |
+          cmake -G Ninja -S ThunderTools -B build/ThunderTools -DCMAKE_INSTALL_PREFIX="${{github.workspace}}/install/usr"
+          cmake --build build/ThunderTools --target install -j$(nproc)
+      
+      - name: Build Thunder
+        run: |
+          cmake -G Ninja -S Thunder -B build/Thunder \
+          -DBUILD_SHARED_LIBS=ON \
+          -DBINDING="127.0.0.1" \
+          -DCMAKE_BUILD_TYPE="Debug" \
+          -DCMAKE_INSTALL_PREFIX="${{github.workspace}}/install/usr" \
+          -DCMAKE_MODULE_PATH="${{github.workspace}}/install/usr/include/WPEFramework/Modules" \
+          -DDATA_PATH="${{github.workspace}}/install/usr/share/WPEFramework" \
+          -DPERSISTENT_PATH="${{github.workspace}}/install/var/wpeframework" \
+          -DPORT="9998" \
+          -DPROXYSTUB_PATH="${{github.workspace}}/install/usr/lib/wpeframework/proxystubs" \
+          -DSYSTEM_PATH="${{github.workspace}}/install/usr/lib/wpeframework/plugins" \
+          -DVOLATILE_PATH="tmp"
+          cmake --build build/Thunder --target install -j$(nproc)
+      
+      - name: Build NetworkManager
+        run: |
+          cmake -S networkmanager -B build/networkmanager \
+          -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/install/usr \
+          -DCMAKE_MODULE_PATH=${{github.workspace}}/install/usr/include/WPEFramework/Modules \
+          -DENABLE_PLUGIN_CLI=OFF \
+          -DENABLE_GNOME_GDBUS=OFF \
+          -DENABLE_GNOME_NETWORKMANAGER=ON
+          cmake --build build/networkmanager --target install -j$(nproc)
+      
+      - name: Build MyPlugin
+        run: |
+          cmake -S MyPlugin -B build/MyPlugin \
+          -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/install/usr \
+          -DCMAKE_MODULE_PATH=${{github.workspace}}/install/usr/include/WPEFramework/Modules
+          cmake --build build/MyPlugin --target install -j$(nproc)
+      
+      - name: Create Plugin Configuration
+        run: |
+          mkdir -p ${{github.workspace}}/install/etc/WPEFramework/plugins
+          cat > ${{github.workspace}}/install/etc/WPEFramework/plugins/MyPlugin.json << EOF
+          {
+            "locator": "libWPEFrameworkMyPlugin.so",
+            "classname": "MyPlugin",
+            "startmode": "Activated",
+            "autostart": true
+          }
+          EOF
+      
+      - name: Run Tests
+        run: |
+          export LD_LIBRARY_PATH=${{github.workspace}}/install/usr/lib:${LD_LIBRARY_PATH}
+          export PATH=${{github.workspace}}/install/usr/bin:${PATH}
+          
+          # Run libnm CLI test if available
+          if [ -f "${{github.workspace}}/install/usr/bin/nmPluginLibnmCli" ]; then
+            echo "Running nmPluginLibnmCli test..."
+            ${{github.workspace}}/install/usr/bin/nmPluginLibnmCli
+          fi
+          
+          # Alternatively run gdbus CLI test if available
+          if [ -f "${{github.workspace}}/install/usr/bin/nmPluginGdbusCli" ]; then
+            echo "Running nmPluginGdbusCli test..."
+            ${{github.workspace}}/install/usr/bin/nmPluginGdbusCli
+          fi
