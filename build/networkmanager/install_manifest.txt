@@ -1,8 +1,0 @@
-/home/mkk/netmgr/install/usr/include/WPEFramework/interfaces/INetworkManager.h
-/home/mkk/netmgr/install/usr/lib/wpeframework/plugins/libWPEFrameworkNetworkManager.so
-/home/mkk/netmgr/install/usr/lib/wpeframework/plugins/libWPEFrameworkNetworkManagerImpl.so
-/home/mkk/netmgr/install/usr/../etc/WPEFramework/plugins/NetworkManager.json
-/home/mkk/netmgr/install/usr/lib/wpeframework/plugins/libWPEFrameworkNetwork.so
-/home/mkk/netmgr/install/usr/lib/wpeframework/plugins/libWPEFrameworkWiFiManager.so
-/home/mkk/netmgr/install/usr/../etc/WPEFramework/plugins/LegacyNetworkAPIs.json
-/home/mkk/netmgr/install/usr/../etc/WPEFramework/plugins/LegacyWiFiManagerAPIs.json

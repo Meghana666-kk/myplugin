@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC -g -shared -Wl,-soname,libMyPlugin.so -o libMyPlugin.so CMakeFiles/MyPlugin.dir/Module.cpp.o CMakeFiles/MyPlugin.dir/MyPlugin.cpp.o 

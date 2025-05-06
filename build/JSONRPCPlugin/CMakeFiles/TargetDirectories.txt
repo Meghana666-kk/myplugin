@@ -1,7 +1,0 @@
-/home/mkk/netmgr/build/JSONRPCPlugin/CMakeFiles/JSONRPCPlugin.dir
-/home/mkk/netmgr/build/JSONRPCPlugin/CMakeFiles/edit_cache.dir
-/home/mkk/netmgr/build/JSONRPCPlugin/CMakeFiles/rebuild_cache.dir
-/home/mkk/netmgr/build/JSONRPCPlugin/CMakeFiles/list_install_components.dir
-/home/mkk/netmgr/build/JSONRPCPlugin/CMakeFiles/install.dir
-/home/mkk/netmgr/build/JSONRPCPlugin/CMakeFiles/install/local.dir
-/home/mkk/netmgr/build/JSONRPCPlugin/CMakeFiles/install/strip.dir
