@@ -1,0 +1,10 @@
+{
+ "locator":"libWPEFrameworkWiFiManager.so",
+ "classname":"WiFiManager",
+ "precondition":[
+  "Platform"
+ ],
+ "callsign":"org.rdk.Wifi",
+ "autostart":true,
+ "startuporder":35
+}

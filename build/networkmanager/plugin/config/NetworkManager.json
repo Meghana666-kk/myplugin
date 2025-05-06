@@ -1,0 +1,17 @@
+{
+ "locator":"libWPEFrameworkNetworkManager.so",
+ "classname":"NetworkManager",
+ "callsign":"org.rdk.NetworkManager",
+ "startuporder":25,
+ "autostart":false,
+ "configuration":{
+  "root":{
+   "outofprocess":true,
+   "locator":"libWPEFrameworkNetworkManagerImpl.so"
+  },
+  "stun":{
+   "interval":30
+  },
+  "loglevel":5
+ }
+}

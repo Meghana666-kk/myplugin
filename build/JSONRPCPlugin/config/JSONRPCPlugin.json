@@ -1,0 +1,5 @@
+{
+ "locator":"libJSONRPCPlugin.so",
+ "classname":"JSONRPCPlugin",
+ "autostart":true
+}

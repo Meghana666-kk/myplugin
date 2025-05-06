@@ -1,0 +1,3 @@
+/home/mkk/netmgr/install/usr/etc/WPEFramework/plugins/MyPlugin.config
+/home/mkk/netmgr/install/usr/etc/WPEFramework/plugins/MyPlugin.conf
+/home/mkk/netmgr/install/usr/lib/wpeframework/plugins/libMyPlugin.so

@@ -1,0 +1,6 @@
+{
+    "callsign": "org.rdk.MyPlugin",
+    "locator": "@CMAKE_INSTALL_PREFIX@/lib/wpeframework/plugins/libWPEFrameworkMyPlugin.so",
+    "classname": "MyPlugin",
+    "autostart": true
+}
