@@ -46,17 +46,7 @@ jobs:
         with:
           repository: Meghana666-kk/myplugin
           path: myplugin
-
-      - name: Debug Directory Structure
-        run: |
-              pwd
-              ls -la
-              ls -R /home/runner/work/install/usr/lib/cmake/WPEFramework
-              cat /home/runner/work/install/usr/include/WPEFramework/plugins/plugins.h
-              find . -name plugins.h
-              find . -name Thunder
-              find . -type d -name "myplugin" -o -name "MyPlugin"
-      
+    
       - name: Build ThunderTools
         run: |
           cmake -G Ninja -S ThunderTools -B build/ThunderTools -DCMAKE_INSTALL_PREFIX="${{github.workspace}}/install/usr"
@@ -87,6 +77,16 @@ jobs:
           -DENABLE_GNOME_GDBUS=OFF \
           -DENABLE_GNOME_NETWORKMANAGER=ON
           cmake --build build/networkmanager --target install -j$(nproc)
+
+      - name: Debug Directory Structure
+        run: |
+              pwd
+              ls -la
+              ls -R /home/runner/work/install/usr/lib/cmake/WPEFramework
+              cat /home/runner/work/install/usr/include/WPEFramework/plugins/plugins.h
+              find . -name plugins.h
+              find . -name Thunder
+              find . -type d -name "myplugin" -o -name "MyPlugin"
 
       - name: Build MyPlugin
         run: |
