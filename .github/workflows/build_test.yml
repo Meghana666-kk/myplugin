@@ -86,7 +86,7 @@ jobs:
 
       - name: Build MyPlugin
         run: |
-          cmake -S repo/myplugin -B build/myplugin \
+          cmake -S myplugin/MyPlugin -B build/myplugin \
           -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/install/usr \
           -DCMAKE_MODULE_PATH=${{github.workspace}}/install/usr/include/WPEFramework/Modules
           cmake --build build/myplugin --target install -j$(nproc)
