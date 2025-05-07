@@ -52,7 +52,7 @@ jobs:
           find . -name JsonData_MyPlugin.h 
           find . -name interfaces
           cp ./myplugin/JsonData_MyPlugin.h ./Thunder/docs/plugin/interfaces/
-          if [ -f "./Thunder/docs/plugin/interfacesJsonData_MyPlugin.h" ]; then
+          if [ -f "./Thunder/docs/plugin/interfaces/JsonData_MyPlugin.h" ]; then
             echo "Header file copied successfully."
           else
             exit 1
