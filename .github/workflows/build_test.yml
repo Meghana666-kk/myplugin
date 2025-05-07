@@ -40,6 +40,12 @@ jobs:
         with:
           repository: Meghana666-kk/networkmanager
           path: networkmanager
+
+      - name: Checkout MyPlugin
+        uses: actions/checkout@v3
+        with:
+          repository: Meghana666-kk/myplugin
+          path: myplugin
       
       - name: Build ThunderTools
         run: |
@@ -71,6 +77,13 @@ jobs:
           -DENABLE_GNOME_GDBUS=OFF \
           -DENABLE_GNOME_NETWORKMANAGER=ON
           cmake --build build/networkmanager --target install -j$(nproc)
+
+      - name: Build MyPlugin
+        run: |
+          cmake -S repo/myplugin -B build/myplugin \
+          -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/install/usr \
+          -DCMAKE_MODULE_PATH=${{github.workspace}}/install/usr/include/WPEFramework/Modules
+          cmake --build build/myplugin --target install -j$(nproc)
       
       - name: Run Tests
         run: |
