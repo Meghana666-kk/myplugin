@@ -2,7 +2,7 @@
 
 #include "Module.h"
 #include <plugins/plugins.h>
-#include <interfaces/JsonData_MyPlugin.h>
+#include "interfaces/JsonData_MyPlugin.h"
 
 namespace WPEFramework {
 namespace Plugin {
