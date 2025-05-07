@@ -46,6 +46,94 @@ jobs:
         with:
           repository: Meghana666-kk/myplugin
           path: myplugin
+
+      - name: Add header file to existing interfaces directory
+  run: |
+    # Verify the directory exists
+    if [ -d "/home/runner/work/myplugin/myplugin/install/usr/lib/cmake/WPEFramework/interfaces" ]; then
+      # Create the header file directly in the existing directory
+      cat > /home/runner/work/myplugin/myplugin/install/usr/lib/cmake/WPEFramework/interfaces/JsonData_MyPlugin.h << 'EOF'
+#pragma once
+
+#include "Module.h"
+#include <core/JSON.h>
+
+namespace WPEFramework {
+
+namespace JsonData {
+
+namespace MyPlugin {
+
+    // Method params/result data structures
+    struct SetMessageParamsInfo : public Core::JSON::Container {
+        SetMessageParamsInfo()
+            : Core::JSON::Container()
+            , Message()
+        {
+            Add(_T("message"), &Message);
+        }
+
+        SetMessageParamsInfo(const SetMessageParamsInfo& other)
+            : Core::JSON::Container()
+            , Message(other.Message)
+        {
+            Add(_T("message"), &Message);
+        }
+
+        ~SetMessageParamsInfo() override = default;
+
+        SetMessageParamsInfo& operator=(const SetMessageParamsInfo& rhs)
+        {
+            Message = rhs.Message;
+            return (*this);
+        }
+
+        Core::JSON::String Message;
+    };
+
+    struct GetMessageResultData : public Core::JSON::Container {
+        GetMessageResultData()
+            : Core::JSON::Container()
+            , Message()
+            , Success(false)
+        {
+            Add(_T("message"), &Message);
+            Add(_T("success"), &Success);
+        }
+
+        GetMessageResultData(const GetMessageResultData& other)
+            : Core::JSON::Container()
+            , Message(other.Message)
+            , Success(other.Success)
+        {
+            Add(_T("message"), &Message);
+            Add(_T("success"), &Success);
+        }
+
+        ~GetMessageResultData() override = default;
+
+        GetMessageResultData& operator=(const GetMessageResultData& rhs)
+        {
+            Message = rhs.Message;
+            Success = rhs.Success;
+            return (*this);
+        }
+
+        Core::JSON::String Message;
+        Core::JSON::Boolean Success;
+    };
+
+} // namespace MyPlugin
+
+} // namespace JsonData
+
+} // namespace WPEFramework
+EOF
+      echo "Header file created successfully."
+    else
+      echo "Error: The interfaces directory does not exist at the expected path."
+      exit 1
+    fi
     
       - name: Build ThunderTools
         run: |
