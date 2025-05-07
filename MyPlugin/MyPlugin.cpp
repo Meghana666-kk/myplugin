@@ -1,5 +1,5 @@
 #include "MyPlugin.h"
-#include <interfaces/JsonData_MyPlugin.h>
+#include "interfaces/JsonData_MyPlugin.h"
 #include <string>  
 #include <cstdio>
 
