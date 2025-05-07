@@ -51,8 +51,8 @@ jobs:
         run: |
           find . -name JsonData_MyPlugin.h 
           find . -name interfaces
-          cp ./myplugin/JsonData_MyPlugin.h /home/runner/work/myplugin/myplugin/install/usr/include/WPEFramework/interfaces/
-          if [ -f "/home/runner/work/myplugin/myplugin/install/usr/include/WPEFramework/interfaces/JsonData_MyPlugin.h" ]; then
+          cp ./myplugin/JsonData_MyPlugin.h ./Thunder/docs/plugin/interfaces/
+          if [ -f "./Thunder/docs/plugin/interfacesJsonData_MyPlugin.h" ]; then
             echo "Header file copied successfully."
           else
             exit 1
