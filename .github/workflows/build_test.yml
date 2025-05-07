@@ -82,8 +82,8 @@ jobs:
         run: |
               pwd
               ls -la
-              ls -R /home/runner/work/install/usr/lib/cmake/WPEFramework
-              cat /home/runner/work/install/usr/include/WPEFramework/plugins/plugins.h
+              ls -R /home/runner/work/myplugin/myplugin/install/usr/lib/cmake/WPEFramework
+              cat /home/runner/work/myplugin/myplugin/install/usr/include/WPEFramework/plugins/plugins.h
               find . -name plugins.h
               find . -name Thunder
               find . -type d -name "myplugin" -o -name "MyPlugin"
