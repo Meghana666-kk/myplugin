@@ -46,6 +46,7 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${WPEFRAMEWORK_INCLUDE_DIR}
+        ${CMAKE_SOURCE_DIR}/../../Thunder/docs/plugin
 )
  
 target_link_libraries(${PROJECT_NAME}
