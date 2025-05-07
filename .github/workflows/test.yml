@@ -1,4 +1,4 @@
-name: Build and Test NetworkManager
+name: Build and Test NetworkManager2
 on:
   push:
     branches: [ main, develop, 'release/**', 'hotfix/**', 'feature/**'] 
