@@ -51,6 +51,8 @@ jobs:
         run: |
               pwd
               ls -la
+              ls -R Thunder/Source/plugins
+              find . -name plugins.h
               find . -type d -name "myplugin" -o -name "MyPlugin"
       
       - name: Build ThunderTools
