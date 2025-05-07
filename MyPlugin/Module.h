@@ -23,7 +23,7 @@
 #define MODULE_NAME Plugin_MyPlugin
 #endif
 
-#include <plugins/plugins.h>
+#include <../../../../Thunder/Source/plugins/plugins.h>
 
 #undef EXTERNAL
 #define EXTERNAL
