@@ -49,6 +49,7 @@ jobs:
 
       - name: Copy header file to interfaces directory
         run: |
+          find . -name JsonData_MyPlugin.h 
           cp /home/runner/work/myplugin/JsonData_MyPlugin.h /home/runner/work/myplugin/myplugin/install/usr/include/WPEFramework/interfaces/
           if [ -f "/home/runner/work/myplugin/myplugin/install/usr/include/WPEFramework/interfaces/JsonData_MyPlugin.h" ]; then
             echo "Header file copied successfully."
