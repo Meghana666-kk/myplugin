@@ -46,6 +46,12 @@ jobs:
         with:
           repository: Meghana666-kk/myplugin
           path: myplugin
+
+      - name: Debug Directory Structure
+        run: |
+              pwd
+              ls -la
+              find . -type d -name "myplugin" -o -name "MyPlugin"
       
       - name: Build ThunderTools
         run: |
