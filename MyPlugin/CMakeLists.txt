@@ -23,7 +23,9 @@ find_package(WPEFramework REQUIRED)
 
 # Set the correct path to WPEFramework include directory
 set(WPEFRAMEWORK_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../install/usr/include/WPEFramework" CACHE PATH "Path to WPEFramework include directory")
-include_directories(${CMAKE_SOURCE_DIR}/../../Thunder/Source/plugins)
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /home/runner/work/myplugin/myplugin/install/usr/lib)
+
+include_directories(${WPEFRAMEWORK_INCLUDE_DIRS})
 
 add_definitions(-DPLUGIN_MyPlugin)
  
