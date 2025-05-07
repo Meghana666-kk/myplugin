@@ -53,6 +53,7 @@ jobs:
               ls -la
               ls -R Thunder/Source/plugins
               find . -name plugins.h
+              find . -name Thunder
               find . -type d -name "myplugin" -o -name "MyPlugin"
       
       - name: Build ThunderTools
